@@ -57,23 +57,104 @@ class PiousAcademic:
                         return False
                 return True        
             
-    def meta_request(self, url, **kwargs):
-        args = {'api_key': self.key}
-        for k in kwargs:
-            if kwargs[k] is not None:
-                args[k] = kwargs[k]
+    def meta_request(self, url, params={}):
+        entries = {'api_key': self.api_key}
+        for key, value in params.items():
+            if key not in entries:
+                entries[key] = value
                 
         r = requests.get(
             'https://www.haloapi.com/metadata/{title}/metadata/{url}'.format(
                 title=title,
-                url=url
-            ),
-            params=args
-        )
+                url=url),
+            params = entries)
         for lim in self.limits:
             lim.add_request()
         raise_status(r)
         return r.json()
+    
+    def  get_campaign_missions(self):
+        url = 'campaign-missions'
+        return self.meta_request(url)
+    
+    def  get_commendations(self):
+        url = 'commendations'
+        return self.meta_request(url)
+        
+    def get_csr_designations(self):
+        url = 'csr-designations'
+        return self.meta_request(url)
+    
+    def get_enemies(self):
+        url = 'enemies'
+        return self.meta_request(url)
+        
+    def get_flexible_stats(self):
+        url = 'flexible-stats'
+        return self.meta_request(url)
+    
+    def get_game_base_variants(self):
+        url = 'game-base-variants'
+        return self.meta_request(url)
+        
+    def get_game_variants_by_id(self,  varID):
+        url = 'game-variants/{id1}'.format(
+            id1 = varID)
+        return self.meta_request(url)    
+    
+    def get_impulses(self):
+        url = 'impulses'
+        return self.meta_request(url)
+    
+    def get_game_variants_by_id(self,  mapID):
+        url = 'map-variants/{id1}'.format(
+            id1 = mapID)
+        return self.meta_request(url)       
+    
+    def get_maps(self):
+        url = 'maps'
+        return self.meta_request(url)    
+    
+    def get_medals(self):
+        url = 'medals'
+        return self.meta_request(url)        
+
+    def get_playlists(self):
+        url = 'playlists'
+        return self.meta_request(url)    
+
+    def get_requisition_packs_by_id(self, reqpackID):
+        url = 'requisition-packs/{id1}'.format(
+            id1 = reqpackID)
+        return self.meta_request(url)      
+    
+    def get_requisition_by_id(self, reqID):
+            url = 'requisitions/{id1}'.format(
+                id1 = reqID)
+            return self.meta_request(url)          
+        
+    def get_skulls(self):
+        url = 'skulls'
+        return self.meta_request(url)        
+    
+    def get_spartan_ranks(self):
+        url = 'spartan-ranks'
+        return self.meta_request(url)            
+
+    def get_team_colors(self):
+        url = 'team-colors'
+        return self.meta_request(url)            
+
+    def get_vehicles(self):
+        url = 'vehicles'
+        return self.meta_request(url)            
+
+    def get_weapons(self):
+        url = 'weapons'
+        return self.meta_request(url)            
+       
+        
+    
     
     def profile_request(self, url, **kwargs):
         args = {'api_key': self.key}
@@ -110,3 +191,4 @@ class PiousAcademic:
                 lim.add_request()
             raise_status(r)
             return r.json()       
+        
