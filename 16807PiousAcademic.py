@@ -169,8 +169,21 @@ class PiousAcademic:
         for lim in self.limits:
             lim.add_request()
         raise_status(r)
-        return r.json()    
+        return r.json()
     
+    def get_emblem_by_id(self, playerID, size=None):
+        url = '{player}/emblem'.format(
+            player = playerID)
+        return self.profile_request(url,
+                                    size = size if size is not None else None)
+    
+    def get_profile_by_id(self, playerID, size=None, crop=None):
+        url = '{player}/spartan'.format(
+            player = playerID)
+        return self.profile_request(url,
+                                    size = size if size is not None else None,
+                                    crop = crop if crop is not None else None)
+                                    
     def stats_request(self, url, params={}):
         entries = {'api_key': self.api_key}
         for key, value in params.items():
