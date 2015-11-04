@@ -152,43 +152,86 @@ class PiousAcademic:
     def get_weapons(self):
         url = 'weapons'
         return self.meta_request(url)            
-       
-        
     
-    
-    def profile_request(self, url, **kwargs):
-        args = {'api_key': self.key}
-        for k in kwargs:
-            if kwargs[k] is not None:
-                args[k] = kwargs[k]
+    def profile_request(self, url, params={}):
+        entries = {'api_key': self.api_key}
+        for key, value in params.items():
+            if key not in entries:
+                entries[key] = value
                 
         r = requests.get(
             'https://www.haloapi.com/profile/{title}/profiles/{url}'.format(
                 title=title,
                 url=url
             ),
-            params=args
+            params = entries
         )
         for lim in self.limits:
             lim.add_request()
         raise_status(r)
         return r.json()    
     
-    def stats_request(self, url, **kwargs):
-            args = {'api_key': self.key}
-            for k in kwargs:
-                if kwargs[k] is not None:
-                    args[k] = kwargs[k]
+    def stats_request(self, url, params={}):
+        entries = {'api_key': self.api_key}
+        for key, value in params.items():
+            if key not in entries:
+                entries[key] = value
                     
             r = requests.get(
                 'https://www.haloapi.com/stats/{title}/{url}'.format(
                     title=title,
                     url=url
                 ),
-                params=args
+                params = entries
             )
             for lim in self.limits:
                 lim.add_request()
             raise_status(r)
             return r.json()       
         
+    def get_matches_for_player(self, playerID, modes=None, start=None, count=None):
+        url = 'players/{player}/matches'.format(player = playerID)
+        return self.stats_request(url,
+                                 modes=modes if modes is not None else None,
+                                 start=start if start is not None else None,
+                                 count=count if count is not None else None)
+    
+    def get_arena_match_by_id(self, matchID):
+        url = 'arena/matches/{matchId}'.format(
+            matchId = matchID)
+        return self.stats_request(url)              
+        
+    def get_campaign_match_by_id(self, matchID):
+        url = 'campaign/matches/{matchId}'.format(
+            matchId = matchID)
+        return self.stats_request(url)
+    
+    def get_custom_match_by_id(self, matchID):
+        url = 'custom/matches/{matchId}'.format(
+            matchId = matchID)
+        return self.stats_request(url)    
+        
+    def get_warzone_match_by_id(self, matchID):
+        url = 'warzone/matches/{matchId}'.format(
+            matchId = matchID)
+        return self.stats_request(url)       
+    
+    def get_arena_servicerecord_for_players(self, playerIDs):
+        url = 'servicerecords/arena'
+        return self.stats_request(url,
+                                  playerIDs)
+    
+    def get_campaign_servicerecord_for_players(self, playerIDs):
+        url = 'servicerecords/campaign'
+        return self.stats_request(url,
+                                  playerIDs)    
+        
+    def get_custom_servicerecord_for_players(self, playerIDs):
+        url = 'servicerecords/custom'
+        return self.stats_request(url,
+                                  playerIDs)    
+
+    def get_warzone_servicerecord_for_players(self, playerIDs):
+        url = 'servicerecords/warzone'
+        return self.stats_request(url,
+                                  playerIDs)        
