@@ -45,7 +45,7 @@ class RateLimit:
         self.__reload()
         return len(self.made_requests) < self.allowed_requests    
     
-class PiousAcademic:
+class PiousAcademic(object):
     def __init__(self, key, title="h5", limits=(RateLimit(100,10))):
         self.key = key
         self.title = title
@@ -53,23 +53,23 @@ class PiousAcademic:
         
     def can_make_request(self):
         for lim in self.limits:
-                    if not lim.request_available():
-                        return False
-                return True        
+            if not lim.request_available():
+                return False
+            return True        
             
     def meta_request(self, url, params={}):
-        entries = {'api_key': self.api_key}
+        entries = {'api_key': self.key}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
                 
         r = requests.get(
             'https://www.haloapi.com/metadata/{title}/metadata/{url}'.format(
-                title=title,
+                title=self.title,
                 url=url),
             params = entries)
         for lim in self.limits:
-            lim.add_request()
+                    lim.add_request()        
         raise_status(r)
         return r.json()
     
@@ -154,14 +154,14 @@ class PiousAcademic:
         return self.meta_request(url)            
     
     def profile_request(self, url, params={}):
-        entries = {'api_key': self.api_key}
+        entries = {'api_key': self.key}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
                 
         r = requests.get(
             'https://www.haloapi.com/profile/{title}/profiles/{url}'.format(
-                title=title,
+                title=self.title,
                 url=url
             ),
             params = entries
@@ -185,14 +185,14 @@ class PiousAcademic:
                                     crop = crop if crop is not None else None)
                                     
     def stats_request(self, url, params={}):
-        entries = {'api_key': self.api_key}
+        entries = {'api_key': self.key}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
                     
             r = requests.get(
                 'https://www.haloapi.com/stats/{title}/{url}'.format(
-                    title=title,
+                    title=self.title,
                     url=url
                 ),
                 params = entries
