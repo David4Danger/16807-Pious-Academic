@@ -46,7 +46,7 @@ class RateLimit:
         return len(self.made_requests) < self.allowed_requests    
     
 class PiousAcademic(object):
-    def __init__(self, key, title="h5", limits=(RateLimit(100,10))):
+    def __init__(self, key, title="h5", limits=(RateLimit(100,10), RateLimit(6000,600))):
         self.key = key
         self.title = title
         self.limits = limits
@@ -69,9 +69,9 @@ class PiousAcademic(object):
                 url=url),
             params = entries)
         for lim in self.limits:
-                    lim.add_request()        
+            lim.add_request()
         raise_status(r)
-        return r.json()
+        return r.json()     
     
     def  get_campaign_missions(self):
         url = 'campaign-missions'
