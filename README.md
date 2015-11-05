@@ -1,4 +1,5 @@
-<h1> 16807 Pious Academic is a Python wrapper for the Halo 5 API </h1>
+<h1> 16807 Pious Academic</h1>
+<h1> A Python wrapper for H5 </h1>
 
 <h3> Current Version: 0.2 </h3>
 <p> Version history coming soon</p>
