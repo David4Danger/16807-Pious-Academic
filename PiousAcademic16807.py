@@ -46,8 +46,7 @@ class RateLimit:
         return len(self.made_requests) < self.allowed_requests    
     
 class PiousAcademic(object):
-    def __init__(self, key, title="h5", limits=(RateLimit(100,10), RateLimit(6000,600))):
-        self.key = key
+    def __init__(self, title="h5", limits=(RateLimit(100,10), RateLimit(6000,600))):
         self.title = title
         self.limits = limits
         
@@ -57,8 +56,8 @@ class PiousAcademic(object):
                 return False
             return True        
             
-    def meta_request(self, url, params={}):
-        entries = {'api_key': self.key}
+    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+        entries = {}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
@@ -67,7 +66,8 @@ class PiousAcademic(object):
             'https://www.haloapi.com/metadata/{title}/metadata/{url}'.format(
                 title=self.title,
                 url=url),
-            params = entries)
+            params = entries,
+            headers = headers)
         for lim in self.limits:
             lim.add_request()
         raise_status(r)
@@ -153,8 +153,8 @@ class PiousAcademic(object):
         url = 'weapons'
         return self.meta_request(url)            
     
-    def profile_request(self, url, params={}):
-        entries = {'api_key': self.key}
+    def profile_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+        entries = {}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
@@ -162,9 +162,9 @@ class PiousAcademic(object):
         r = requests.get(
             'https://www.haloapi.com/profile/{title}/profiles/{url}'.format(
                 title=self.title,
-                url=url
-            ),
-            params = entries
+                url=url),
+            params = entries,
+            headers = headers,
         )
         for lim in self.limits:
             lim.add_request()
@@ -184,8 +184,8 @@ class PiousAcademic(object):
                                     size = size if size is not None else None,
                                     crop = crop if crop is not None else None)
                                     
-    def stats_request(self, url, params={}):
-        entries = {'api_key': self.key}
+    def stats_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+        entries = {}
         for key, value in params.items():
             if key not in entries:
                 entries[key] = value
@@ -193,9 +193,9 @@ class PiousAcademic(object):
             r = requests.get(
                 'https://www.haloapi.com/stats/{title}/{url}'.format(
                     title=self.title,
-                    url=url
-                ),
-                params = entries
+                    url=url),
+                params = entries,
+                headers = headers
             )
             for lim in self.limits:
                 lim.add_request()
