@@ -12,6 +12,7 @@ class i343Exception(Exception):
 
 error_302 = 'Golden Path. The Location header should point at the corresponding emblem image.'
 error_400 = 'An unsupported value was provided for a query string parameter.'
+error_401 = 'Access denied.'
 error_404 = 'Specified Title was not "h5"/Specified player gamertag was not found.'
 error_500 = 'Internal Server Error'
 
@@ -20,6 +21,8 @@ def raise_status(response):
         raise i343Exception(error_302, response)
     elif response.status_code == 400:
         raise i343Exception(error_400, response)
+    elif response.status_code == 401:
+        raise i343Exception(error_401, response)
     elif response.status_code == 404:
         raise i343Exception(error_404, response)
     elif response.status_code == 500:
@@ -56,7 +59,7 @@ class PiousAcademic(object):
                 return False
             return True        
             
-    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': '2288c1729c0e47ca961ff7b6af062637'}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
