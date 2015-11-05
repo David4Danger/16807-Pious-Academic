@@ -59,7 +59,7 @@ class PiousAcademic(object):
                 return False
             return True        
             
-    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': '2288c1729c0e47ca961ff7b6af062637'}):
+    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
