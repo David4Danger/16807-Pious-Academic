@@ -2,6 +2,7 @@ from collections import deque
 import time
 import requests
 
+#This class raises exceptions caused by a non-200 response code from a request made
 class i343Exception(Exception):
     def __init__(self, error, response):
         self.error = error
@@ -29,7 +30,10 @@ def raise_status(response):
         raise i343Exception(error_500, response)
     else:
         response.raise_for_status()
-        
+
+#This class makes sure you are operating within your rate limit constraints. Technically it is not
+#necessary, but without it you could hit the cap on 343's end accidentally and run the risk of your
+#api key being suspended.
 class RateLimit:
     def __init__(self, allowed_requests, seconds):
         self.allowed_requests = allowed_requests
@@ -47,9 +51,15 @@ class RateLimit:
     def request_available(self):
         self.__reload()
         return len(self.made_requests) < self.allowed_requests    
-    
+ 
+#The 3 different types of request and all their respective function calls are defined
+#under this class. Any function arguments initialized as 'None' are disable unless an
+#argument is given, meaning they are optional arguments to pass or not. Refer to the
+#official documentation for further details.
+#Make sure to replace all instances of 'YOUR KEY HERE' with your actual API key provided
+#on your profile on the developer dashboard.
 class PiousAcademic(object):
-    def __init__(self, title="h5", limits=(RateLimit(100,10), RateLimit(6000,600))):
+    def __init__(self, title="h5", limits=(RateLimit(10,10), RateLimit(600,600))):
         self.title = title
         self.limits = limits
         
