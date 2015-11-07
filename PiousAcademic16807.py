@@ -56,7 +56,7 @@ class RateLimit:
 #under this class. Any function arguments initialized as 'None' are disable unless an
 #argument is given, meaning they are optional arguments to pass or not. Refer to the
 #official documentation for further details.
-#Make sure to replace all instances of 'YOUR KEY HERE' with your actual API key provided
+#Make sure to replace all instances of 'KEY HERE' with your actual API key provided
 #on your profile on the developer dashboard.
 class PiousAcademic(object):
     def __init__(self, title="h5", limits=(RateLimit(10,10), RateLimit(600,600))):
@@ -69,7 +69,7 @@ class PiousAcademic(object):
                 return False
             return True        
             
-    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
@@ -166,7 +166,7 @@ class PiousAcademic(object):
         url = 'weapons'
         return self.meta_request(url)            
     
-    def profile_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+    def profile_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
@@ -182,6 +182,7 @@ class PiousAcademic(object):
         for lim in self.limits:
             lim.add_request()
         raise_status(r)
+        print(r)
         return r.json()
     
     def get_emblem_by_id(self, playerID, size=None):
@@ -197,7 +198,7 @@ class PiousAcademic(object):
                                     size = size if size is not None else None,
                                     crop = crop if crop is not None else None)
                                     
-    def stats_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'YOUR KEY HERE'}):
+    def stats_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
