@@ -1,8 +1,9 @@
 <h2>16807 Pious Academic, A Python Wrapper For H5</h2>
-<h3>Current Version: 1.0 </h3>
+<h3>Current Version: 1.1 </h3>
 
 <h3>Version History </h3>
-<p><b>Future releases:</b> Additional tests to verify integrity, demo files.</p>
+<p><b>Future releases:</b> Additional tests to verify integrity, file that automatically obtains all metadata and stores a local copy of all responses in JSON format.</p>
+<p><b>Version 1.1:</b> Added testfile.py that gives a demo on how to use all of the request functions, and has some more in-depth explanations about various nuances in the API. Also repaired a few bugs in the parameters used in functions with optional parameters. Much more stable and usable than 1.0.</p>
 <p><b>Version 1.0:</b> Cleaned up a few pieces of the code and added some documentation.</p>
 <p><b>Version 0.2:</b> Fixed all the major bugs and issues, added the rate limit and error classes to have a more operational program. Updated rate limits to support 343's new 1 request per second rate.</p>
 <p><b>Version 0.1:</b> First skeleton release, full of bugs and other fun stuff.</p>
