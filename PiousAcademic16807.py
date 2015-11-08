@@ -2,6 +2,9 @@ from collections import deque
 import time
 import requests
 
+#Put your API key you got from the developer page in the space of 'YOUR KEY HERE'
+MYKEY = 'YOUR KEY HERE'
+
 #This class raises exceptions caused by a non-200 response code from a request made
 class i343Exception(Exception):
     def __init__(self, error, response):
@@ -56,8 +59,6 @@ class RateLimit:
 #under this class. Any function arguments initialized as 'None' are disable unless an
 #argument is given, meaning they are optional arguments to pass or not. Refer to the
 #official documentation for further details.
-#Make sure to replace all instances of 'KEY HERE' with your actual API key provided
-#on your profile on the developer dashboard.
 class PiousAcademic(object):
     def __init__(self, title="h5", limits=(RateLimit(10,10), RateLimit(600,600))):
         self.title = title
@@ -69,7 +70,7 @@ class PiousAcademic(object):
                 return False
             return True        
             
-    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
+    def meta_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': MYKEY}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
@@ -119,7 +120,7 @@ class PiousAcademic(object):
         url = 'impulses'
         return self.meta_request(url)
     
-    def get_game_variants_by_id(self,  mapID):
+    def get_maps_variants_by_id(self,  mapID):
         url = 'map-variants/{id1}'.format(
             id1 = mapID)
         return self.meta_request(url)       
@@ -166,7 +167,7 @@ class PiousAcademic(object):
         url = 'weapons'
         return self.meta_request(url)            
     
-    def profile_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
+    def profile_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': MYKEY}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
@@ -189,16 +190,16 @@ class PiousAcademic(object):
         url = '{player}/emblem'.format(
             player = playerID)
         return self.profile_request(url,
-                                    size = size if size is not None else None)
+                                    {'size':size})
     
     def get_profile_by_id(self, playerID, size=None, crop=None):
         url = '{player}/spartan'.format(
             player = playerID)
         return self.profile_request(url,
-                                    size = size if size is not None else None,
-                                    crop = crop if crop is not None else None)
+                                    {'size':size,
+                                     'crop':crop})
                                     
-    def stats_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': 'KEY HERE'}):
+    def stats_request(self, url, params={}, headers={'Ocp-Apim-Subscription-Key': MYKEY}):
         entries = {}
         for key, value in params.items():
             if key not in entries:
@@ -219,9 +220,9 @@ class PiousAcademic(object):
     def get_matches_for_player(self, playerID, modes=None, start=None, count=None):
         url = 'players/{player}/matches'.format(player = playerID)
         return self.stats_request(url,
-                                 modes=modes if modes is not None else None,
-                                 start=start if start is not None else None,
-                                 count=count if count is not None else None)
+                                 {'modes':modes,
+                                  'start':start,
+                                  'count':count})
     
     def get_arena_match_by_id(self, matchID):
         url = 'arena/matches/{matchId}'.format(
@@ -246,19 +247,19 @@ class PiousAcademic(object):
     def get_arena_servicerecord_for_players(self, playerIDs):
         url = 'servicerecords/arena'
         return self.stats_request(url,
-                                  playerIDs)
+                                  {'players':playerIDs})
     
     def get_campaign_servicerecord_for_players(self, playerIDs):
         url = 'servicerecords/campaign'
         return self.stats_request(url,
-                                  playerIDs)    
+                                  {'players':playerIDs})    
         
     def get_custom_servicerecord_for_players(self, playerIDs):
         url = 'servicerecords/custom'
         return self.stats_request(url,
-                                  playerIDs)    
+                                  {'players':playerIDs})    
 
     def get_warzone_servicerecord_for_players(self, playerIDs):
         url = 'servicerecords/warzone'
         return self.stats_request(url,
-                                  playerIDs)        
+                                  {'players':playerIDs})        
