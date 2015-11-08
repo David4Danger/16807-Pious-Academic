@@ -1,8 +1,9 @@
 <h2>16807 Pious Academic, A Python Wrapper For H5</h2>
-<h3>Current Version: 1.1 </h3>
+<h3>Current Version: 1.2 </h3>
 
 <h3>Version History </h3>
-<p><b>Future releases:</b> Additional tests to verify integrity, file that automatically obtains all metadata and stores a local copy of all responses in JSON format.</p>
+<p><b>Future releases:</b> Additional tests to verify integrity, work on profile requests.</p>
+<p><b>Version 1.2:</b> Added getmeta.py and a copy of my current local metadata JSON files. Just run getmeta.py and it will automatically create an up-to-date local copy of all the available meta data for you. <b>NOTE:</b> I provided a copy of all my current JSON files for you to save to make the process easier. You will still need to <b>change the paths</b> used to open and write into all the JSON files in the getmeta file.
 <p><b>Version 1.1:</b> Added testfile.py that gives a demo on how to use all of the request functions, and has some more in-depth explanations about various nuances in the API. Also repaired a few bugs in the parameters used in functions with optional parameters. Much more stable and usable than 1.0.</p>
 <p><b>Version 1.0:</b> Cleaned up a few pieces of the code and added some documentation.</p>
 <p><b>Version 0.2:</b> Fixed most of the major bugs and issues, added the rate limit and error classes to have a more operational program. Updated rate limits to support 343's new 1 request per second rate.</p>
