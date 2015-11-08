@@ -1,14 +1,31 @@
-<h2> 16807 Pious Academic, A Python Wrapper For H5</h2>
-<h3> Current Version: 1.0 </h3>
+<h2>16807 Pious Academic, A Python Wrapper For H5</h2>
+<h3>Current Version: 1.0 </h3>
 
-<h3> Version History </h3>
+<h3>Version History </h3>
 <p><b>Future releases:</b> Additional tests to verify integrity, demo files.</p>
 <p><b>Version 1.0:</b> Cleaned up a few pieces of the code and added some documentation.</p>
 <p><b>Version 0.2:</b> Fixed all the major bugs and issues, added the rate limit and error classes to have a more operational program. Updated rate limits to support 343's new 1 request per second rate.</p>
 <p><b>Version 0.1:</b> First skeleton release, full of bugs and other fun stuff.</p>
+<br>
 
-<h3> Installing Pious Academic </h3>
+<h3>Installing Pious Academic </h3>
+<p><a href="https://developer.haloapi.com/developer">Go here and sign into your microsoft account</a>, then go to your profile. You should have an API key ready for you to use. Get it, save it, and for the love of god don't let anyone other than yourself see it.</p>
+<p>The other prerequisite is to have the request module installed for Python. Run this in your terminal to install the module:  
+<br>
+<br>
+    $ pip install requests
+<br>
+<br>
+You can find the documentation for requests <a href="http://docs.python-requests.org/en/latest/">here</a>, but it isn't important if you're just using the wrapper, only if you want to <i>understand</i> how it works.
+</p>
+<br>
+<h3>Using Pious Academic </h3>
+<p>Using the module is fairly simple. Create your entry point main file and import the PiousAcademic class.</p>
+  from PiousAcademic16807 import PiousAcademic
+<p>Then you'll need to define the PiousAcademic class as a variable</p>
+  api = PiousAcademic()
+<p>Now you're free to manipulate any of the functions in the API as you see fit. Simply include whatever parameters you are required to include and any optional parameters you want to use.</p>
+  
 
-<h3> Using Pious Academic </h3>
-
-<h3> Addendum </h3>
+<h3>Addendum </h3>
+<p>This wrapper was made for my use with <a href="www.bigteambattle.net">bigteambattle.net</a> website leaderboards and more. I'll keep everyone updated on when my project is complete if I can make it public for an example of utilising the wrapper. Feel free to contact me here or at my personal website, <a href="www.davidskudra.ca">davidskudra.ca</a> for any questions regarding this library or my work.</p>
