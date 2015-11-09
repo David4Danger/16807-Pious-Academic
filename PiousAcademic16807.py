@@ -4,6 +4,8 @@ import requests
 
 #Put your API key you got from the developer page in the space of 'YOUR KEY HERE'
 MYKEY = 'YOUR KEY HERE'
+MYGT = 'YOUR GAMERTAG HERE' #can be used for emblem, profile, matches, service records, etc
+ALLGTS = 'GAMERTAG1,GAMERTAG2,GAMETAG3,GAMERTAG4' #make sure to keep it as one string and seperate GTs by a comma each
 
 #This class raises exceptions caused by a non-200 response code from a request made
 class i343Exception(Exception):
