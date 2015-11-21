@@ -30,4 +30,4 @@ You can find the documentation for requests <a href="http://docs.python-requests
   
 
 <h3>Addendum </h3>
-<p>This wrapper was made for my use with <a href="www.bigteambattle.net">bigteambattle.net</a> website leaderboards and more. I'll keep everyone updated on when my project is complete if I can make it public for an example of utilising the wrapper. Feel free to contact me here or at my personal website, <a href="www.davidskudra.ca">davidskudra.ca</a> for any questions regarding this library or my work.</p>
+<p>This wrapper was made for my use with www.bigteambattle.net, a website leaderboards and more. I'll keep everyone updated on when my project is complete if I can make it public for an example of utilising the wrapper. Feel free to contact me here or at my personal website, www.davidskudra.ca, for any questions regarding this library or my work.</p>
