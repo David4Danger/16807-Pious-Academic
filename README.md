@@ -1,8 +1,9 @@
 <h2>16807 Pious Academic, A Python Wrapper For H5</h2>
-<h3>Current Version: 1.2 </h3>
+<h3>Current Version: 1.3 </h3>
 
 <h3>Version History </h3>
 <p><b>Future releases:</b> Additional tests to verify integrity, work on profile requests, working BTBnet example</p>
+<p><b>Version 1.3:</b> Added samples, removed json, made sample scripts UNIX compatible, added config, refactored API classes.
 <p><b>Version 1.2:</b> Added getmeta.py and a copy of my current local metadata JSON files. Just run getmeta.py and it will automatically create an up-to-date local copy of all the available meta data for you. <b>NOTE:</b> I provided a copy of all my current JSON files for you to save to make the process easier. You will still need to <b>change the paths</b> used to open and write into all the JSON files in the getmeta file.
 <p><b>Version 1.1:</b> Added testfile.py that gives a demo on how to use all of the request functions, and has some more in-depth explanations about various nuances in the API. Also repaired a few bugs in the parameters used in functions with optional parameters. Much more stable and usable than 1.0.</p>
 <p><b>Version 1.0:</b> Cleaned up a few pieces of the code and added some documentation.</p>
@@ -23,11 +24,11 @@ You can find the documentation for requests <a href="http://docs.python-requests
 <br>
 <h3>Using Pious Academic </h3>
 <p>Using the module is fairly simple. Create your entry point main file and import the PiousAcademic class.</p>
-<p>import PiousAcademic16807</p>
-<p>Then you'll need to define the various apis as classes.</p>
-<p> meta = PiousAcademic16807.Metadata()</p>
-<p> profile = PiousAcademic16807.Profile()</p>
-<p> stats = PiousAcademic16807.Stats()</p>
+<pre>import PiousAcademic16807</pre>
+<p>Then you'll need to define the various apis as variable:</p>
+<pre> meta = PiousAcademic16807.Metadata()</pre>
+<pre> profile = PiousAcademic16807.Profile()</pre>
+<pre> stats = PiousAcademic16807.Stats()</pre>
 
 <p>Now you're free to manipulate any of the functions in the API as you see fit. Simply include whatever parameters you are required to include and any optional parameters you want to use.</p>
   
