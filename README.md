@@ -25,7 +25,7 @@ You can find the documentation for requests <a href="http://docs.python-requests
 <h3>Using Pious Academic </h3>
 <p>Using the module is fairly simple. Create your entry point main file and import the PiousAcademic class.</p>
 <pre>import PiousAcademic16807</pre>
-<p>Then you'll need to define the various apis as classes:</p>
+<p>Then you'll need to define the various apis as variable:</p>
 <pre> meta = PiousAcademic16807.Metadata()</pre>
 <pre> profile = PiousAcademic16807.Profile()</pre>
 <pre> stats = PiousAcademic16807.Stats()</pre>
